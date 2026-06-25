@@ -186,10 +186,45 @@ button { font: inherit; color: inherit; }
 
   /* ── 학교 카드 ── */
   .schools-grid { grid-template-columns: 1fr !important; }
+  .listing-card-price { display: none !important; }
 
-  /* ── 예산 테이블: 가로 스크롤 ── */
-  #budget > div:nth-child(4) { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
-  .budget-table { min-width: 520px; }
+  /* ── 예산 테이블: 모바일 카드형 ── */
+  .budget-table { border-radius: 16px !important; }
+  /* 헤더 행 숨김 */
+  .budget-table > div:first-child { display: none !important; }
+  /* 각 데이터 행: 그리드 → 플렉스 세로 */
+  .budget-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 18px 20px !important;
+    gap: 6px !important;
+  }
+  .budget-row > div { padding: 0 !important; text-align: left !important; font-size: 14px !important; }
+  /* 기간 셀 */
+  .budget-row > div:first-child { font-size: 17px !important; margin-bottom: 4px !important; }
+  /* 학비/숙소/생활비 → 한 줄로 */
+  .budget-row > div:nth-child(2),
+  .budget-row > div:nth-child(3),
+  .budget-row > div:nth-child(4) {
+    display: inline !important;
+    color: var(--text-secondary) !important;
+  }
+  .budget-row > div:nth-child(2)::before { content: "학비 "; font-weight: 600; color: var(--text-primary); }
+  .budget-row > div:nth-child(3)::before { content: "  ·  숙소 "; font-weight: 600; color: var(--text-primary); }
+  .budget-row > div:nth-child(4)::before { content: "  ·  생활비 "; font-weight: 600; color: var(--text-primary); }
+  /* 소계 행: 학비~생활비 세 셀을 한 줄 컨테이너로 묶기 */
+  .budget-row::after {
+    display: none;
+  }
+  /* 총비용 셀 강조 */
+  .budget-row > div:last-child {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: var(--color-primary-600) !important;
+    margin-top: 6px !important;
+    text-align: left !important;
+  }
+  .budget-row > div:last-child::before { content: "총 "; font-size: 13px; font-weight: 600; color: var(--text-secondary); }
 
   /* ── 진행 절차 ── */
   .process-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
