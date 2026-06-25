@@ -107,26 +107,110 @@ button { font: inherit; color: inherit; }
 .hero-section { display: none; }
 .hero-section.active { display: block; }
 
-/* ── Mobile ── */
+/* ════════════════════════════════════
+   TABLET  (≤ 1024px)
+════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .places-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .process-grid { grid-template-columns: repeat(3,1fr) !important; }
+}
+
+/* ════════════════════════════════════
+   MOBILE  (≤ 768px)
+════════════════════════════════════ */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .header-inner { padding: 0 16px; height: 60px; }
-  .trust-grid { grid-template-columns: repeat(2,1fr) !important; }
+
+  /* ── 전역 섹션 패딩 축소 ── */
+  section, section > div { padding-left: 16px !important; padding-right: 16px !important; }
+  section[style*="padding:56px 32px"],
+  section[style*="padding:0 32px"] { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* ── 헤더 ── */
+  .header-inner { padding: 0 16px !important; height: 60px !important; gap: 12px !important; }
+  .nav-links { display: none !important; }
+  .header-inner > span { display: none; } /* "몰타 어학연수" 부제 숨김 */
+
+  /* ── H1 폰트 크기 ── */
+  h1 { font-size: 30px !important; line-height: 1.15 !important; letter-spacing: -0.01em !important; }
+  h2 { font-size: 22px !important; line-height: 1.2 !important; }
+  h3 { font-size: 16px !important; }
+
+  /* ── HERO 1 내부 패딩 ── */
+  #hero1 { padding: 0 16px !important; }
+  #hero1 > div { border-radius: 20px !important; min-height: 420px !important; }
+  #hero1 > div > div:last-child { padding: 32px 24px !important; }
+
+  /* ── HERO 2 ── */
+  #hero2 { margin-top: 24px !important; padding: 0 16px !important; }
+  .hero2-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .hero2-grid > div:last-child { aspect-ratio: 16/9 !important; }
+
+  /* ── HERO 3 ── */
+  #hero3 { padding: 0 16px !important; }
+  #hero3 > div { border-radius: 20px !important; min-height: 400px !important; }
+  #hero3 > div > div:first-of-type { padding: 40px 20px 100px !important; }
+  /* 하단 글라스 스탯 바 */
+  #hero3 .hero3-stats { white-space: normal !important; flex-wrap: wrap !important; gap: 4px !important; padding: 10px 8px !important; }
+  #hero3 .hero3-stats > div { padding: 4px 10px !important; }
+
+  /* ── 신뢰 지표 ── */
+  .trust-grid { grid-template-columns: repeat(2,1fr) !important; gap: 10px !important; }
+
+  /* ── 왜 몰타 ── */
   .why-grid { grid-template-columns: 1fr !important; }
-  .do-grid { grid-template-columns: 1fr !important; grid-auto-rows: auto !important; }
-  .do-grid .do-big { grid-column: span 1 !important; grid-row: span 1 !important; }
-  .do-grid > div { min-height: 160px; }
-  .places-grid, .schools-grid, .reviews-grid { grid-template-columns: 1fr !important; }
-  .process-grid { grid-template-columns: 1fr 1fr !important; }
-  .budget-table { font-size: 13px; }
-  .budget-table .budget-row { grid-template-columns: 1fr 1fr !important; }
-  .budget-table .budget-row > div:nth-child(2),
-  .budget-table .budget-row > div:nth-child(3),
-  .budget-table .budget-row > div:nth-child(4) { display: none; }
-  .footer-inner { flex-direction: column !important; }
-  .hero2-grid { grid-template-columns: 1fr !important; }
-  .cta-inner { flex-direction: column !important; text-align: center; }
+  /* 파노라마 이미지 비율 변경 */
+  [style*="aspect-ratio:21/9"] { aspect-ratio: 16/9 !important; }
+
+  /* ── 영상 ── */
   .videos-grid { grid-template-columns: 1fr !important; }
+
+  /* ── 즐길거리 이미지 그리드 ── */
+  .do-grid {
+    grid-template-columns: 1fr 1fr !important;
+    grid-auto-rows: 150px !important;
+  }
+  .do-big {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+    min-height: 200px !important;
+  }
+  .do-big > div:last-child > div:first-child { font-size: 18px !important; }
+
+  /* ── 명소 카드 ── */
+  .places-grid { grid-template-columns: repeat(2,1fr) !important; gap: 12px !important; }
+
+  /* ── 학교 카드 ── */
+  .schools-grid { grid-template-columns: 1fr !important; }
+
+  /* ── 예산 테이블: 가로 스크롤 ── */
+  #budget > div:nth-child(4) { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .budget-table { min-width: 520px; }
+
+  /* ── 진행 절차 ── */
+  .process-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* ── 후기 ── */
+  .reviews-grid { grid-template-columns: 1fr !important; }
+
+  /* ── CTA 배너 ── */
+  section[style*="padding:8px 32px 64px"] { padding: 8px 16px 48px !important; }
+  .cta-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 36px 24px !important;
+    gap: 20px !important;
+  }
+  .cta-inner h2 { font-size: 24px !important; }
+
+  /* ── 푸터 ── */
+  .footer-inner { flex-direction: column !important; padding: 32px 16px !important; gap: 24px !important; }
+
+  /* ── 히어로 시안 전환기 ── */
+  #hero-switcher { right: 12px !important; bottom: 12px !important; }
+  #hero-switcher > span { display: none; }
+
+  /* ── 버튼 크기 조정 ── */
+  .btn-lg { font-size: 15px !important; height: 48px !important; padding: 0 22px !important; }
 }
 </style>
 </head>
