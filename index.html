@@ -167,12 +167,17 @@ button { font: inherit; color: inherit; }
   /* ── 즐길거리 이미지 그리드 ── */
   .do-grid {
     grid-template-columns: 1fr 1fr !important;
-    grid-auto-rows: 150px !important;
+    grid-auto-rows: auto !important;
+    gap: 10px !important;
+  }
+  .do-grid > div {
+    height: 150px !important;
+    min-height: unset !important;
   }
   .do-big {
     grid-column: span 2 !important;
     grid-row: span 1 !important;
-    min-height: 200px !important;
+    height: 210px !important;
   }
   .do-big > div:last-child > div:first-child { font-size: 18px !important; }
 
