@@ -1,0 +1,105 @@
+/* ============================================================
+   종로유학원 — Color tokens
+   Primary: Jongno Vermilion #E73C28 (from the "1" brand mark)
+   Ink:     Charcoal #3E393D (wordmark)
+   ============================================================ */
+:root {
+  /* ---- Primary — Jongno Vermilion ---- */
+  --color-primary-50:  #FFF1EE;
+  --color-primary-100: #FFDED7;
+  --color-primary-200: #FFB9AC;
+  --color-primary-300: #FB8E7A;
+  --color-primary-400: #F26350;
+  --color-primary-500: #E73C28;  /* brand */
+  --color-primary-600: #CC2D1B;
+  --color-primary-700: #A62313;
+  --color-primary-800: #7D1B10;
+  --color-primary-900: #54140C;
+
+  /* ---- Accent — Sky (trust / global) ---- */
+  --color-accent-50:  #EAF4FB;
+  --color-accent-100: #C9E2F5;
+  --color-accent-300: #6FB4E6;
+  --color-accent-500: #2188D9;
+  --color-accent-600: #1A6FB5;
+  --color-accent-700: #155A93;
+
+  /* ---- Warm — golden highlight (energy / awards) ---- */
+  --color-warm-100: #FFF0CC;
+  --color-warm-300: #FFD166;
+  --color-warm-500: #F5A623;
+  --color-warm-700: #B97608;
+
+  /* ---- Neutral (warm-gray, ink anchored on the wordmark) ---- */
+  --color-neutral-0:    #FFFFFF;
+  --color-neutral-50:   #FAF9F8;
+  --color-neutral-100:  #F3F1EF;
+  --color-neutral-200:  #E7E3E0;
+  --color-neutral-300:  #D5CFCB;
+  --color-neutral-400:  #B4ADA8;
+  --color-neutral-500:  #8C857F;
+  --color-neutral-600:  #6B645F;
+  --color-neutral-700:  #4E4844;
+  --color-neutral-800:  #3E393D;  /* wordmark charcoal */
+  --color-neutral-900:  #2A2629;
+  --color-neutral-1000: #17141600;
+
+  /* ---- Semantic ---- */
+  --color-success-bg: #E4F5EA;
+  --color-success-fg: #1F8A4C;
+  --color-warning-bg: #FFF1D6;
+  --color-warning-fg: #B07208;
+  --color-error-bg:   #FFE7E2;
+  --color-error-fg:   #CC2D1B;
+  --color-info-bg:    #E6F1FB;
+  --color-info-fg:    #1A6FB5;
+
+  /* ---- Surface ---- */
+  --bg-base:     #FFFFFF;
+  --bg-subtle:   #FAF9F8;
+  --bg-muted:    #F3F1EF;
+  --bg-elevated: #FFFFFF;
+  --bg-inverse:  #2A2629;
+  --bg-overlay:  rgba(42, 38, 41, 0.55);
+
+  /* ---- Text ---- */
+  --text-primary:    #2A2629;
+  --text-secondary:  #6B645F;
+  --text-tertiary:   #8C857F;
+  --text-on-primary: #FFFFFF;
+  --text-on-inverse: #FAF9F8;
+  --text-disabled:   #B4ADA8;
+  --text-link:       #CC2D1B;
+
+  /* ---- Border ---- */
+  --border-subtle:  #F3F1EF;
+  --border-default: #E7E3E0;
+  --border-strong:  #D5CFCB;
+  --border-focus:   #2A2629;
+
+  /* ---- Brand raw ---- */
+  --brand-vermilion: #E73C28;
+  --brand-ink:       #3E393D;
+}
+
+[data-theme="dark"] {
+  --bg-base:     #1A1719;
+  --bg-subtle:   #221E20;
+  --bg-muted:    #2A2629;
+  --bg-elevated: #2A2629;
+  --bg-inverse:  #FAF9F8;
+  --bg-overlay:  rgba(0,0,0,0.6);
+
+  --text-primary:    #F7F5F4;
+  --text-secondary:  #B4ADA8;
+  --text-tertiary:   #8C857F;
+  --text-on-inverse: #2A2629;
+  --text-link:       #FB8E7A;
+
+  --border-subtle:  #2A2629;
+  --border-default: #3A3537;
+  --border-strong:  #4E4844;
+  --border-focus:   #F7F5F4;
+
+  --color-primary-500: #F26350;
+}

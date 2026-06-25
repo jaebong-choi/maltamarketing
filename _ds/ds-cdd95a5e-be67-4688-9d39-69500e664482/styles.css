@@ -1,0 +1,9 @@
+/* ============================================================
+   종로유학원 Design System — global entry point
+   Consumers link THIS file. Import list only.
+   ============================================================ */
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/base.css";

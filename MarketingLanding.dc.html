@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+  body { margin: 0; font-family: var(--font-sans); color: var(--text-primary); background: var(--bg-base); }
+  a { color: inherit; text-decoration: none; }
+  @keyframes mlt-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes mlt-kenburns { 0% { transform: scale(1.02); } 100% { transform: scale(1.12); } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;overflow-x:hidden;">
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--border-subtle);">
+    <div style="max-width:1200px;margin:0 auto;height:72px;padding:0 32px;display:flex;align-items:center;gap:28px;">
+      <img src="assets/logo-color.png" alt="종로유학원" style="height:30px;width:auto;" />
+      <span style="font:700 14px/1 var(--font-sans);color:var(--text-tertiary);letter-spacing:-0.01em;border-left:1px solid var(--border-default);padding-left:14px;">몰타 어학연수</span>
+      <nav style="display:flex;gap:24px;margin-left:8px;">
+        <a href="#why" style="font:500 14px/1 var(--font-sans);color:var(--text-secondary);">왜 몰타</a>
+        <a href="#do" style="font:500 14px/1 var(--font-sans);color:var(--text-secondary);">즐길거리</a>
+        <a href="#schools" style="font:500 14px/1 var(--font-sans);color:var(--text-secondary);">추천 학교</a>
+        <a href="#budget" style="font:500 14px/1 var(--font-sans);color:var(--text-secondary);">예산</a>
+        <a href="#process" style="font:500 14px/1 var(--font-sans);color:var(--text-secondary);">진행 절차</a>
+      </nav>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+        <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:inline-flex;">
+          <x-import component-from-global-scope="Ds_cdd95a.Button" variant="primary" size="sm" hint-size="120px,36px">무료 상담 신청</x-import>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO VARIANT 1 — full-bleed coastal ============ -->
+  <sc-if value="{{ isHero1 }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:0 32px;">
+    <div style="max-width:1200px;margin:24px auto 0;position:relative;border-radius:32px;overflow:hidden;min-height:520px;display:flex;align-items:center;">
+      <img src="https://picsum.photos/seed/malta-valletta-harbor/1600/1000" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(100deg, rgba(42,38,41,0.86) 0%, rgba(42,38,41,0.5) 50%, rgba(42,38,41,0.08) 100%);"></div>
+      <div style="position:relative;padding:56px;max-width:640px;color:#fff;">
+        <x-import component-from-global-scope="Ds_cdd95a.Badge" variant="solid" tone="primary" hint-size="220px,26px">유럽 유일의 영어 공용어 휴양지, 몰타</x-import>
+        <h1 style="font:900 56px/1.05 var(--font-display);letter-spacing:-0.02em;margin:18px 0 0;">지중해 섬에서 보내는<br />가장 단단한 3개월</h1>
+        <p style="font:400 17px/1.65 var(--font-sans);color:rgba(255,255,255,0.9);margin:18px 0 0;max-width:500px;">영어가 공용어인 휴양지 몰타에서, 일상처럼 영어를 익히세요. 종로유학원이 학교 선정부터 비자·출국·현지 정착까지 차분히 함께합니다.</p>
+        <div style="display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;">
+          <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:inline-flex;">
+            <x-import component-from-global-scope="Ds_cdd95a.Button" variant="cta" size="lg" hint-size="180px,54px">무료 상담 신청 →</x-import>
+          </a>
+          <a href="#schools" style="display:inline-flex;">
+            <x-import component-from-global-scope="Ds_cdd95a.Button" variant="inverse" size="lg" hint-size="160px,54px">학교 둘러보기</x-import>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ HERO VARIANT 2 — editorial split ============ -->
+  <sc-if value="{{ isHero2 }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1200px;margin:40px auto 0;padding:0 32px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div style="padding:8px 0;">
+        <div style="font:700 13px/1 var(--font-sans);letter-spacing:0.14em;color:var(--color-primary-600);">MALTA · 어학연수</div>
+        <h1 style="font:900 54px/1.08 var(--font-display);letter-spacing:-0.02em;margin:16px 0 0;">휴양과 영어,<br />둘 다 미루지 않기로 했다</h1>
+        <p style="font:400 17px/1.65 var(--font-sans);color:var(--text-secondary);margin:20px 0 0;max-width:460px;">짧게는 한 달, 길게는 반 년. 지중해 한가운데 작은 섬에서 영어가 일상이 되는 경험. 종로유학원이 38년 노하우로 처음부터 끝까지 함께합니다.</p>
+        <div style="display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;">
+          <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:inline-flex;">
+            <x-import component-from-global-scope="Ds_cdd95a.Button" variant="cta" size="lg" hint-size="180px,54px">무료 상담 신청 →</x-import>
+          </a>
+          <a href="#budget" style="display:inline-flex;">
+            <x-import component-from-global-scope="Ds_cdd95a.Button" variant="secondary" size="lg" hint-size="150px,54px">예산 살펴보기</x-import>
+          </a>
+        </div>
+        <div style="display:flex;gap:28px;margin-top:34px;">
+          <div><div style="font:800 24px/1 var(--font-display);color:var(--text-primary);">300일+</div><div style="font:500 13px/1.4 var(--font-sans);color:var(--text-tertiary);margin-top:6px;">연간 맑은 날</div></div>
+          <div><div style="font:800 24px/1 var(--font-display);color:var(--text-primary);">EU·셴겐</div><div style="font:500 13px/1.4 var(--font-sans);color:var(--text-tertiary);margin-top:6px;">가입국</div></div>
+          <div><div style="font:800 24px/1 var(--font-display);color:var(--text-primary);">38년</div><div style="font:500 13px/1.4 var(--font-sans);color:var(--text-tertiary);margin-top:6px;">종로 노하우</div></div>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);">
+        <img src="uploads/valletta-old-medieval-street-2026-03-25-23-25-30-utc.jpg" alt="발레타 구시가지 골목과 빨간 우체통, 멀리 보이는 지중해" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:center;animation:mlt-kenburns 14s var(--ease-in-out) infinite alternate;" />
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ HERO VARIANT 3 — centered with glass stat bar ============ -->
+  <sc-if value="{{ isHero3 }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:0 32px;">
+    <div style="max-width:1200px;margin:24px auto 0;position:relative;border-radius:32px;overflow:hidden;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+      <img src="https://picsum.photos/seed/malta-coast-cliff/1600/1000" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(42,38,41,0.55) 0%, rgba(42,38,41,0.3) 40%, rgba(42,38,41,0.7) 100%);"></div>
+      <div style="position:relative;padding:64px 32px 120px;color:#fff;max-width:760px;">
+        <x-import component-from-global-scope="Ds_cdd95a.Badge" variant="solid" tone="primary" hint-size="180px,26px">몰타 어학연수</x-import>
+        <h1 style="font:900 60px/1.05 var(--font-display);letter-spacing:-0.02em;margin:18px 0 0;">몰타에서는,<br />영어가 일상이 됩니다</h1>
+        <p style="font:400 18px/1.65 var(--font-sans);color:rgba(255,255,255,0.92);margin:20px auto 0;max-width:540px;">영어 공용어 국가에서 보내는 휴양 같은 어학연수. 종로유학원이 학교부터 출국까지 함께합니다.</p>
+        <div style="display:flex;gap:12px;margin-top:30px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:inline-flex;">
+            <x-import component-from-global-scope="Ds_cdd95a.Button" variant="cta" size="lg" hint-size="180px,54px">무료 상담 신청 →</x-import>
+          </a>
+        </div>
+      </div>
+      <div style="position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:8px;background:rgba(255,255,255,0.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.22);border-radius:18px;padding:14px 10px;color:#fff;">
+        <div style="padding:4px 22px;text-align:center;"><div style="font:800 20px/1 var(--font-display);">영어 공용어</div><div style="font:500 12px/1.3 var(--font-sans);opacity:0.82;margin-top:5px;">현지 공식 언어</div></div>
+        <div style="width:1px;background:rgba(255,255,255,0.22);"></div>
+        <div style="padding:4px 22px;text-align:center;"><div style="font:800 20px/1 var(--font-display);">300일+</div><div style="font:500 12px/1.3 var(--font-sans);opacity:0.82;margin-top:5px;">연간 일조량</div></div>
+        <div style="width:1px;background:rgba(255,255,255,0.22);"></div>
+        <div style="padding:4px 22px;text-align:center;"><div style="font:800 20px/1 var(--font-display);">€ 유로</div><div style="font:500 12px/1.3 var(--font-sans);opacity:0.82;margin-top:5px;">EU·셴겐 가입</div></div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section style="max-width:1200px;margin:0 auto;padding:40px 32px 8px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:22px 24px;">
+        <div style="font:800 30px/1 var(--font-display);color:var(--color-primary-600);">영어</div>
+        <div style="font:500 14px/1.5 var(--font-sans);color:var(--text-secondary);margin-top:8px;">몰타의 공용어 — 일상이 곧 회화 연습</div>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:22px 24px;">
+        <div style="font:800 30px/1 var(--font-display);color:var(--color-primary-600);">~30%</div>
+        <div style="font:500 14px/1.5 var(--font-sans);color:var(--text-secondary);margin-top:8px;">영국·아일랜드 대비 저렴한 생활비</div>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:22px 24px;">
+        <div style="font:800 30px/1 var(--font-display);color:var(--color-primary-600);">90일</div>
+        <div style="font:500 14px/1.5 var(--font-sans);color:var(--text-secondary);margin-top:8px;">무비자 체류 — 단기 연수 부담 없이</div>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:22px 24px;">
+        <div style="font:800 30px/1 var(--font-display);color:var(--color-primary-600);">3시간</div>
+        <div style="font:500 14px/1.5 var(--font-sans);color:var(--text-secondary);margin-top:8px;">로마·바르셀로나행 비행 — 주말 유럽 여행</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY MALTA ============ -->
+  <section id="why" style="max-width:1200px;margin:0 auto;padding:56px 32px;scroll-margin-top:88px;">
+    <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">왜 몰타인가</div>
+    <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 8px;">휴양과 어학, 둘 다 챙기는 단 하나의 선택</h2>
+    <p style="font:400 16px/1.6 var(--font-sans);color:var(--text-secondary);margin:0 0 28px;max-width:640px;">바쁜 직장 생활에 잠시 쉼표가 필요한 분, 갭이어를 의미 있게 채우고 싶은 분에게. 몰타는 쉬면서도 영어가 느는 가장 효율적인 무대입니다.</p>
+    <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:21/9;margin:0 0 28px;box-shadow:var(--shadow-md);">
+      <img src="uploads/aerial-view-of-old-town-buildings-near-water-in-va-2026-03-18-17-34-33-utc.jpg" alt="발레타 구시가지와 그랜드 하버 전경" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(42,38,41,0.55));"></div>
+      <div style="position:absolute;left:28px;bottom:22px;color:#fff;font:600 15px/1.4 var(--font-sans);">수도 발레타와 지중해가 맞닿은 풍경 — 도시 전체가 UNESCO 세계문화유산입니다.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="width:46px;height:46px;border-radius:12px;background:var(--color-primary-50);display:flex;align-items:center;justify-content:center;font-size:22px;">🗣️</div>
+        <h3 style="font:700 19px/1.3 var(--font-display);margin:18px 0 8px;">영어가 공용어</h3>
+        <p style="font:400 15px/1.6 var(--font-sans);color:var(--text-secondary);margin:0;">표지판, 관공서, 카페까지 모두 영어. 교실 밖에서도 자연스럽게 영어에 노출됩니다.</p>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="width:46px;height:46px;border-radius:12px;background:var(--color-accent-50);display:flex;align-items:center;justify-content:center;font-size:22px;">🏖️</div>
+        <h3 style="font:700 19px/1.3 var(--font-display);margin:18px 0 8px;">휴양지의 여유</h3>
+        <p style="font:400 15px/1.6 var(--font-sans);color:var(--text-secondary);margin:0;">에메랄드빛 지중해와 연 300일 넘는 햇살. 평일엔 공부, 주말엔 바다 — 번아웃 없는 연수.</p>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="width:46px;height:46px;border-radius:12px;background:var(--color-warm-100);display:flex;align-items:center;justify-content:center;font-size:22px;">💶</div>
+        <h3 style="font:700 19px/1.3 var(--font-display);margin:18px 0 8px;">합리적인 비용</h3>
+        <p style="font:400 15px/1.6 var(--font-sans);color:var(--text-secondary);margin:0;">영국·아일랜드보다 학비와 생활비가 부담 적어, 같은 예산으로 더 오래 머무를 수 있어요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIDEOS ============ -->
+  <section style="max-width:1200px;margin:0 auto;padding:0 32px 8px;">
+    <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">영상으로 보기</div>
+    <h2 style="font:700 28px/1.2 var(--font-display);letter-spacing:-0.015em;margin:0 0 20px;">몰타, 직접 눈으로 확인하세요</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+      <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;box-shadow:var(--shadow-md);background:var(--bg-muted);">
+        <iframe src="https://www.youtube.com/embed/Gjx9Lp4HbQw" title="몰타 어학연수 영상 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+      </div>
+      <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;box-shadow:var(--shadow-md);background:var(--bg-muted);">
+        <iframe src="https://www.youtube.com/embed/RwNusa8b1Lo" title="몰타 어학연수 영상 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THINGS TO DO ============ -->
+  <section id="do" style="background:var(--bg-subtle);scroll-margin-top:72px;">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px;">
+      <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">현지에서</div>
+      <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 22px;">수업이 끝나면, 이런 걸 할 수 있어요</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;">
+        <div style="grid-column:span 2;grid-row:span 2;position:relative;border-radius:18px;overflow:hidden;">
+          <img src="uploads/deep-blue-hole-at-the-world-famous-azure-window-in-2026-03-09-03-24-26-utc.jpg" alt="고조의 블루홀에서 스노클링" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(42,38,41,0.78));"></div>
+          <div style="position:absolute;left:24px;bottom:22px;color:#fff;"><div style="font:800 24px/1.2 var(--font-display);">스쿠버 다이빙 · 스노클링</div><div style="font:500 14px/1.4 var(--font-sans);opacity:0.9;margin-top:6px;">투명한 지중해에서 즐기는 유럽 손꼽히는 다이빙 스폿</div></div>
+        </div>
+        <div style="position:relative;border-radius:18px;overflow:hidden;">
+          <img src="uploads/boats-floating-against-valletta-city-background-ma-2026-03-08-23-03-34-utc.jpg" alt="발레타 하버의 전통 몰타 보트" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(42,38,41,0.78));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff;font:700 16px/1.2 var(--font-display);">세일링 · 보트투어</div>
+        </div>
+        <div style="position:relative;border-radius:18px;overflow:hidden;">
+          <img src="uploads/MDAxNTYyNzAxMjkzMTA0.BKxtpZO1ntLmvtapdTUyyEOlKYW1l0pUGX9wEHr49_0g.TkXTMiQEcISc6g8wfQIARpZ0bCH0fQJR6NO-lwMSaKIg.png" alt="블루라군 해변에서 즐기는 음료" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(42,38,41,0.78));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff;font:700 16px/1.2 var(--font-display);">비치클럽 · 선셋</div>
+        </div>
+        <div style="position:relative;border-radius:18px;overflow:hidden;">
+          <img src="uploads/modica-in-sicily-2026-03-24-09-10-25-utc.jpg" alt="시칠리아 모디카 야경" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(42,38,41,0.78));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff;font:700 16px/1.2 var(--font-display);">주말 시칠리아 여행</div>
+        </div>
+        <div style="position:relative;border-radius:18px;overflow:hidden;">
+          <img src="uploads/image%20(4).png" alt="국제 국기로 장식된 발레타의 야외 레스토랑 거리" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(42,38,41,0.78));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff;font:700 16px/1.2 var(--font-display);">현지 페스타 · 미식</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLACES TO VISIT ============ -->
+  <section id="places" style="max-width:1200px;margin:0 auto;padding:56px 32px;scroll-margin-top:72px;">
+    <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">가볼만한 곳</div>
+    <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 22px;">한 번쯤은 꼭, 몰타의 명소</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/aerial-drone-skyline-of-valletta-at-sunset-malta-2026-03-25-04-44-07-utc.jpg" badge="UNESCO" title="발레타" rating="{{ p1 }}" subtitle="수도 · 구시가지" meta="요새 도시 · 바로크 건축" hint-size="100%,300px"></x-import>
+      <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/image%20(5).png" badge="대표 명소" title="블루라군" rating="{{ p2 }}" subtitle="코미노 섬" meta="에메랄드빛 천연 수영장" hint-size="100%,300px"></x-import>
+      <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/image%20(6).png" title="음디나" rating="{{ p3 }}" subtitle="Silent City" meta="중세 성곽 마을" hint-size="100%,300px"></x-import>
+      <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/image%20(7).png" title="고조 섬" rating="{{ p4 }}" subtitle="자매 섬" meta="한적한 자연 · 절벽" hint-size="100%,300px"></x-import>
+    </div>
+  </section>
+
+  <!-- ============ SCHOOLS ============ -->
+  <section id="schools" style="background:var(--bg-subtle);scroll-margin-top:72px;">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px;">
+      <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">추천 영어 프로그램</div>
+      <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 8px;">검증된 어학원에서, 제대로 배우세요</h2>
+      <p style="font:400 16px/1.6 var(--font-sans);color:var(--text-secondary);margin:0 0 26px;max-width:640px;">레벨과 목표에 맞춰 종로유학원이 직접 매칭해 드립니다. 아래 학비는 일반영어(주 20레슨) 기준 대략 금액으로, 시즌·과정에 따라 달라집니다.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/image%20(8).png" badge="프리미엄" title="EC Malta" rating="{{ s1 }}" subtitle="세인트 줄리안스" meta="모던 캠퍼스 · 도심 중심" price="₩210,000~" price-unit="/ 주" hint-size="100%,320px"></x-import>
+        <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/iels-malta-27697.png" badge="전통" title="IELS Malta" rating="{{ s2 }}" subtitle="슬리에마" meta="오랜 전통 · 다양한 국적" price="₩150,000~" price-unit="/ 주" hint-size="100%,320px"></x-import>
+        <x-import component-from-global-scope="Ds_cdd95a.ListingCard" image="uploads/image%20(9).png" badge="글로벌" title="EF Malta" rating="{{ s3 }}" subtitle="세인트 줄리안스 베이" meta="체계적 커리큘럼 · 액티비티" price="₩230,000~" price-unit="/ 주" hint-size="100%,320px"></x-import>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:24px;padding:20px 24px;background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;">
+        <span style="font:600 14px/1.4 var(--font-sans);color:var(--text-secondary);">그 외 인증 파트너 학교</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="font:600 13px/1 var(--font-sans);color:var(--text-primary);background:var(--bg-muted);border-radius:9999px;padding:9px 16px;">ESE (European School of English)</span>
+          <span style="font:600 13px/1 var(--font-sans);color:var(--text-primary);background:var(--bg-muted);border-radius:9999px;padding:9px 16px;">Sprachcaffe Malta</span>
+          <span style="font:600 13px/1 var(--font-sans);color:var(--text-primary);background:var(--bg-muted);border-radius:9999px;padding:9px 16px;">GV Malta</span>
+        </div>
+        <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="margin-left:auto;font:600 14px/1 var(--font-sans);color:var(--color-primary-600);">내게 맞는 학교 추천받기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUDGET ============ -->
+  <section id="budget" style="max-width:1200px;margin:0 auto;padding:56px 32px;scroll-margin-top:72px;">
+    <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">예산 안내</div>
+    <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 8px;">기간별 대략 예산, 미리 그려보세요</h2>
+    <p style="font:400 16px/1.6 var(--font-sans);color:var(--text-secondary);margin:0 0 26px;max-width:640px;">아래 금액은 일반영어 + 공유 숙소 기준의 <strong>대략 추정치</strong>입니다. 환율·시즌·학교·숙소 형태에 따라 달라지며, 정확한 견적은 무료 상담에서 안내드립니다.</p>
+    <div style="border:1px solid var(--border-default);border-radius:20px;overflow:hidden;background:var(--bg-base);box-shadow:var(--shadow-sm);">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.1fr;background:var(--bg-muted);font:700 14px/1.3 var(--font-sans);color:var(--text-secondary);">
+        <div style="padding:16px 22px;">기간</div>
+        <div style="padding:16px 14px;text-align:right;">학비</div>
+        <div style="padding:16px 14px;text-align:right;">숙소</div>
+        <div style="padding:16px 14px;text-align:right;">생활비</div>
+        <div style="padding:16px 22px;text-align:right;">대략 총비용</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.1fr;border-top:1px solid var(--border-subtle);align-items:center;">
+        <div style="padding:20px 22px;font:700 16px/1.3 var(--font-display);">4주<span style="font:500 13px/1 var(--font-sans);color:var(--text-tertiary);margin-left:8px;">단기 체험</span></div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 110만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 80만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 70만</div>
+        <div style="padding:20px 22px;text-align:right;font:800 17px/1 var(--font-display);color:var(--color-primary-600);">약 260만</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.1fr;border-top:1px solid var(--border-subtle);align-items:center;background:var(--color-primary-50);">
+        <div style="padding:20px 22px;font:700 16px/1.3 var(--font-display);">12주<span style="font:600 12px/1 var(--font-sans);color:#fff;background:var(--color-primary-500);border-radius:9999px;padding:4px 9px;margin-left:8px;">인기</span></div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 300만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 220만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 190만</div>
+        <div style="padding:20px 22px;text-align:right;font:800 17px/1 var(--font-display);color:var(--color-primary-600);">약 710만</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.1fr;border-top:1px solid var(--border-subtle);align-items:center;">
+        <div style="padding:20px 22px;font:700 16px/1.3 var(--font-display);">24주<span style="font:500 13px/1 var(--font-sans);color:var(--text-tertiary);margin-left:8px;">집중 / 갭이어</span></div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 540만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 420만</div>
+        <div style="padding:20px 14px;text-align:right;font:500 15px/1 var(--font-sans);color:var(--text-secondary);">약 360만</div>
+        <div style="padding:20px 22px;text-align:right;font:800 17px/1 var(--font-display);color:var(--color-primary-600);">약 1,320만</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+      <div style="flex:1;min-width:240px;display:flex;gap:10px;align-items:flex-start;padding:14px 18px;background:var(--color-info-bg);border-radius:12px;"><span style="font-size:16px;">✈️</span><span style="font:500 13px/1.5 var(--font-sans);color:var(--text-secondary);"><strong style="color:var(--text-primary);">항공 왕복 별도</strong> · 시즌에 따라 약 150~220만 원</span></div>
+      <div style="flex:1;min-width:240px;display:flex;gap:10px;align-items:flex-start;padding:14px 18px;background:var(--color-warning-bg);border-radius:12px;"><span style="font-size:16px;">🛂</span><span style="font:500 13px/1.5 var(--font-sans);color:var(--text-secondary);"><strong style="color:var(--text-primary);">90일까지 무비자</strong> · 그 이상 체류 시 현지 학생 비자(eResidence) 안내</span></div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" style="background:var(--bg-subtle);scroll-margin-top:72px;">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px;">
+      <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">진행 절차</div>
+      <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 28px;">상담부터 출국까지, 5단계로 끝</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+        <div style="background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;padding:24px;">
+          <div style="font:800 16px/1 var(--font-display);color:#fff;background:var(--color-primary-500);width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;">1</div>
+          <h3 style="font:700 16px/1.3 var(--font-display);margin:16px 0 6px;">무료 상담</h3>
+          <p style="font:400 14px/1.55 var(--font-sans);color:var(--text-secondary);margin:0;">목표·예산·기간을 함께 진단합니다.</p>
+        </div>
+        <div style="background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;padding:24px;">
+          <div style="font:800 16px/1 var(--font-display);color:#fff;background:var(--color-primary-500);width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;">2</div>
+          <h3 style="font:700 16px/1.3 var(--font-display);margin:16px 0 6px;">학교·기간 선정</h3>
+          <p style="font:400 14px/1.55 var(--font-sans);color:var(--text-secondary);margin:0;">레벨에 맞는 어학원을 추천합니다.</p>
+        </div>
+        <div style="background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;padding:24px;">
+          <div style="font:800 16px/1 var(--font-display);color:#fff;background:var(--color-primary-500);width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;">3</div>
+          <h3 style="font:700 16px/1.3 var(--font-display);margin:16px 0 6px;">등록 & 숙소</h3>
+          <p style="font:400 14px/1.55 var(--font-sans);color:var(--text-secondary);margin:0;">서류·결제·숙소 예약을 대행합니다.</p>
+        </div>
+        <div style="background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;padding:24px;">
+          <div style="font:800 16px/1 var(--font-display);color:#fff;background:var(--color-primary-500);width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;">4</div>
+          <h3 style="font:700 16px/1.3 var(--font-display);margin:16px 0 6px;">비자 & 항공</h3>
+          <p style="font:400 14px/1.55 var(--font-sans);color:var(--text-secondary);margin:0;">출국 전 준비 사항을 꼼꼼히 챙깁니다.</p>
+        </div>
+        <div style="background:var(--bg-base);border:1px solid var(--border-default);border-radius:16px;padding:24px;">
+          <div style="font:800 16px/1 var(--font-display);color:#fff;background:var(--color-primary-500);width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;">5</div>
+          <h3 style="font:700 16px/1.3 var(--font-display);margin:16px 0 6px;">출국 & 정착</h3>
+          <p style="font:400 14px/1.55 var(--font-sans);color:var(--text-secondary);margin:0;">도착·픽업·현지 적응까지 함께합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section style="max-width:1200px;margin:0 auto;padding:56px 32px;">
+    <div style="font:700 12px/1 var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary-600);margin-bottom:8px;">후기</div>
+    <h2 style="font:700 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 24px;">먼저 다녀온 분들의 이야기</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="color:var(--color-warm-500);font-size:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font:500 16px/1.6 var(--font-sans);color:var(--text-primary);margin:14px 0 18px;">“퇴사 후 3개월, 인생에서 가장 잘한 선택이었어요. 쉬면서도 영어가 늘었고 무엇보다 다시 일할 힘을 얻었습니다.”</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <img src="https://picsum.photos/seed/review-kim/80/80" alt="" style="width:40px;height:40px;border-radius:9999px;object-fit:cover;" />
+          <div><div style="font:700 14px/1.2 var(--font-sans);">김O진</div><div style="font:500 13px/1.2 var(--font-sans);color:var(--text-tertiary);margin-top:3px;">직장인 · 12주</div></div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="color:var(--color-warm-500);font-size:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font:500 16px/1.6 var(--font-sans);color:var(--text-primary);margin:14px 0 18px;">“취업 공백을 영어로 채웠어요. 이력서에 쓸 토익 점수도, 자신감도 함께 올랐습니다.”</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <img src="https://picsum.photos/seed/review-lee/80/80" alt="" style="width:40px;height:40px;border-radius:9999px;object-fit:cover;" />
+          <div><div style="font:700 14px/1.2 var(--font-sans);">이O서</div><div style="font:500 13px/1.2 var(--font-sans);color:var(--text-tertiary);margin-top:3px;">갭이어 · 8주</div></div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border-default);border-radius:16px;padding:28px;">
+        <div style="color:var(--color-warm-500);font-size:15px;letter-spacing:2px;">★★★★★</div>
+        <p style="font:500 16px/1.6 var(--font-sans);color:var(--text-primary);margin:14px 0 18px;">“평일엔 수업, 주말엔 유럽 여행. 한 달 한 달이 아깝지 않은 시간이었어요. 종로 담당자님 케어도 든든했고요.”</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <img src="https://picsum.photos/seed/review-park/80/80" alt="" style="width:40px;height:40px;border-radius:9999px;object-fit:cover;" />
+          <div><div style="font:700 14px/1.2 var(--font-sans);">박O우</div><div style="font:500 13px/1.2 var(--font-sans);color:var(--text-tertiary);margin-top:3px;">직장인 · 16주</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="padding:8px 32px 64px;">
+    <div style="max-width:1200px;margin:0 auto;border-radius:32px;background:linear-gradient(120deg, var(--color-primary-600), var(--color-primary-500) 60%, var(--color-primary-400));padding:56px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <h2 style="font:900 34px/1.15 var(--font-display);letter-spacing:-0.015em;margin:0 0 10px;">올해, 몰타에서 영어와 쉼을 함께</h2>
+        <p style="font:400 17px/1.5 var(--font-sans);color:rgba(255,255,255,0.92);margin:0;">상담은 100% 무료입니다. 부담 없이, 가능성부터 함께 그려보세요.</p>
+      </div>
+      <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:inline-flex;">
+        <x-import component-from-global-scope="Ds_cdd95a.Button" size="lg" hint-size="200px,54px" style="background:#fff;color:var(--color-primary-600);">무료 상담 신청하기 →</x-import>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:var(--bg-inverse);color:var(--color-neutral-300);">
+    <div style="max-width:1200px;margin:0 auto;padding:48px 32px;display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div style="max-width:320px;">
+        <img src="assets/logo-white.png" alt="종로유학원" style="height:28px;width:auto;" />
+        <p style="font:400 14px/1.6 var(--font-sans);color:var(--color-neutral-400);margin:16px 0 0;">38년 노하우로 상담부터 출국·현지 정착까지 함께하는 대한민국 유학 1번지.</p>
+      </div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div>
+          <div style="font:700 13px/1 var(--font-sans);color:#fff;margin-bottom:14px;">몰타 어학연수</div>
+          <a href="#why" style="display:block;font:400 14px/1 var(--font-sans);color:var(--color-neutral-400);margin-bottom:12px;">왜 몰타</a>
+          <a href="#schools" style="display:block;font:400 14px/1 var(--font-sans);color:var(--color-neutral-400);margin-bottom:12px;">추천 학교</a>
+          <a href="#budget" style="display:block;font:400 14px/1 var(--font-sans);color:var(--color-neutral-400);">예산 안내</a>
+        </div>
+        <div>
+          <div style="font:700 13px/1 var(--font-sans);color:#fff;margin-bottom:14px;">상담</div>
+          <a href="https://www.coei.com/info/consult/reserve.php" target="_blank" rel="noopener" style="display:block;font:400 14px/1 var(--font-sans);color:var(--color-neutral-400);margin-bottom:12px;">무료 상담 예약</a>
+          <span style="display:block;font:400 14px/1 var(--font-sans);color:var(--color-neutral-400);">평일 09:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--color-neutral-700);">
+      <div style="max-width:1200px;margin:0 auto;padding:20px 32px;font:400 13px/1.4 var(--font-sans);color:var(--color-neutral-500);">© 종로유학원 · Jongno Study Abroad. 본 페이지의 비용은 대략 추정치이며 실제 견적은 상담 시 안내됩니다.</div>
+    </div>
+  </footer>
+
+  <!-- ============ HERO VARIANT SWITCHER (dev) ============ -->
+  <div style="position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:6px;background:var(--bg-inverse);border-radius:9999px;padding:6px 8px;box-shadow:var(--shadow-lg);">
+    <span style="font:600 12px/1 var(--font-sans);color:var(--color-neutral-400);padding:0 6px 0 10px;">히어로 시안</span>
+    <button onClick="{{ setHero1 }}" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">1</button>
+    <button onClick="{{ setHero2 }}" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">2</button>
+    <button onClick="{{ setHero3 }}" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">3</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;],&quot;default&quot;:&quot;2&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { hero: 0 };
+
+  componentDidMount() {
+    const v = parseInt(this.props.heroVariant, 10);
+    if (v >= 1 && v <= 3) this.setState({ hero: v });
+  }
+
+  get activeHero() {
+    return this.state.hero || parseInt(this.props.heroVariant, 10) || 2;
+  }
+
+  renderVals() {
+    const h = this.activeHero;
+    return {
+      isHero1: h === 1,
+      isHero2: h === 2,
+      isHero3: h === 3,
+      notHero1: h !== 1,
+      notHero2: h !== 2,
+      notHero3: h !== 3,
+      setHero1: () => this.setState({ hero: 1 }),
+      setHero2: () => this.setState({ hero: 2 }),
+      setHero3: () => this.setState({ hero: 3 }),
+      p1: 4.9, p2: 4.95, p3: 4.8, p4: 4.85,
+      s1: 4.8, s2: 4.7, s3: 4.8
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* ============================================================
+   종로유학원 — Webfonts
+   Inter (Latin) + Noto Sans KR (Korean), via Google Fonts.
+   The imported stylesheet supplies full unicode-range @font-face
+   coverage for the entire Hangul block.
+
+   NOTE: Airbnb Cereal is proprietary; Inter is the closest free
+   geometric-humanist match. Swap in licensed Cereal files if owned.
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap");
