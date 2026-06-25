@@ -701,24 +701,8 @@ button { font: inherit; color: inherit; }
   </div>
 </footer>
 
-<!-- ── HERO SWITCHER (dev) ── -->
-<div id="hero-switcher" style="position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:6px;background:var(--bg-inverse);border-radius:9999px;padding:6px 8px;box-shadow:var(--shadow-lg);">
-  <span style="font:600 12px/1 var(--font-sans);color:var(--color-neutral-400);padding:0 6px 0 10px;">히어로 시안</span>
-  <button id="btn1" onclick="setHero(1)" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">1</button>
-  <button id="btn2" onclick="setHero(2)" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">2</button>
-  <button id="btn3" onclick="setHero(3)" style="height:30px;padding:0 14px;border-radius:9999px;border:1px solid var(--color-neutral-700);cursor:pointer;font:700 13px/1 var(--font-sans);background:transparent;color:#fff;">3</button>
-</div>
-
 <script>
-function setHero(n) {
-  document.querySelectorAll('.hero-section').forEach(s => s.classList.remove('active'));
-  document.getElementById('hero' + n).classList.add('active');
-  [1,2,3].forEach(i => {
-    var btn = document.getElementById('btn' + i);
-    btn.style.background = i === n ? 'var(--color-primary-500)' : 'transparent';
-  });
-}
-setHero(2);
+document.getElementById('hero2').classList.add('active');
 </script>
 
 </body>
